@@ -13,24 +13,24 @@ MonoBehaviour:
   m_Name: RPCData
   m_EditorClassIdentifier: 
   parameters:
-  - rid: 6761962985610281313
-  - rid: 6761962985610281314
-  - rid: 6761962985610281315
-  - rid: 6761962985610281316
-  - rid: 6761962985610281317
-  - rid: 6761962985610281318
-  - rid: 6761962985610281319
-  - rid: 6761962985610281320
-  - rid: 6761962985610281321
-  - rid: 6761962985610281322
-  - rid: 6761962985610281323
-  - rid: 6761962985610281324
-  - rid: 6761962985610281325
-  - rid: 6761962985610281326
+  - rid: 6761962985610281341
+  - rid: 6761962985610281342
+  - rid: 6761962985610281343
+  - rid: 6761962985610281344
+  - rid: 6761962985610281345
+  - rid: 6761962985610281346
+  - rid: 6761962985610281347
+  - rid: 6761962985610281348
+  - rid: 6761962985610281349
+  - rid: 6761962985610281350
+  - rid: 6761962985610281351
+  - rid: 6761962985610281352
+  - rid: 6761962985610281353
+  - rid: 6761962985610281354
   references:
     version: 2
     RefIds:
-    - rid: 6761962985610281313
+    - rid: 6761962985610281341
       type: {class: RPCParamInt, ns: RPC, asm: Assembly-CSharp}
       data:
         name: intVal
@@ -39,7 +39,7 @@ MonoBehaviour:
         min: 0
         max: 0
         value: 0
-    - rid: 6761962985610281314
+    - rid: 6761962985610281342
       type: {class: RPCParamFloat, ns: RPC, asm: Assembly-CSharp}
       data:
         name: floatVal
@@ -48,7 +48,7 @@ MonoBehaviour:
         min: 0
         max: 0
         value: 0
-    - rid: 6761962985610281315
+    - rid: 6761962985610281343
       type: {class: RPCParamFloat, ns: RPC, asm: Assembly-CSharp}
       data:
         name: sliderVal
@@ -57,7 +57,7 @@ MonoBehaviour:
         min: 0
         max: 1
         value: 0
-    - rid: 6761962985610281316
+    - rid: 6761962985610281344
       type: {class: RPCParamInt, ns: RPC, asm: Assembly-CSharp}
       data:
         name: intSliderVal
@@ -66,7 +66,7 @@ MonoBehaviour:
         min: 0
         max: 10
         value: 0
-    - rid: 6761962985610281317
+    - rid: 6761962985610281345
       type: {class: RPCParamVector2, ns: RPC, asm: Assembly-CSharp}
       data:
         name: vector2Val
@@ -75,7 +75,7 @@ MonoBehaviour:
         min: 0
         max: 0
         value: {x: 1, y: 1}
-    - rid: 6761962985610281318
+    - rid: 6761962985610281346
       type: {class: RPCParamVector2Int, ns: RPC, asm: Assembly-CSharp}
       data:
         name: vector2IntVal
@@ -84,7 +84,7 @@ MonoBehaviour:
         min: 0
         max: 0
         value: {x: 1, y: 1}
-    - rid: 6761962985610281319
+    - rid: 6761962985610281347
       type: {class: RPCParamVector3, ns: RPC, asm: Assembly-CSharp}
       data:
         name: vector3Val
@@ -93,7 +93,7 @@ MonoBehaviour:
         min: 0
         max: 0
         value: {x: 1, y: 1, z: 1}
-    - rid: 6761962985610281320
+    - rid: 6761962985610281348
       type: {class: RPCParamVector3Int, ns: RPC, asm: Assembly-CSharp}
       data:
         name: vector3IntVal
@@ -102,7 +102,7 @@ MonoBehaviour:
         min: 0
         max: 0
         value: {x: 1, y: 1, z: 1}
-    - rid: 6761962985610281321
+    - rid: 6761962985610281349
       type: {class: RPCParamVector4, ns: RPC, asm: Assembly-CSharp}
       data:
         name: vector4Val
@@ -111,7 +111,7 @@ MonoBehaviour:
         min: 0
         max: 0
         value: {x: 1, y: 1, z: 1, w: 1}
-    - rid: 6761962985610281322
+    - rid: 6761962985610281350
       type: {class: RPCParamColor, ns: RPC, asm: Assembly-CSharp}
       data:
         name: colorVal
@@ -120,7 +120,7 @@ MonoBehaviour:
         min: 0
         max: 0
         value: {r: 1, g: 1, b: 1, a: 1}
-    - rid: 6761962985610281323
+    - rid: 6761962985610281351
       type: {class: RPCParamRect, ns: RPC, asm: Assembly-CSharp}
       data:
         name: rectVal
@@ -134,7 +134,7 @@ MonoBehaviour:
           y: 1
           width: 1
           height: 1
-    - rid: 6761962985610281324
+    - rid: 6761962985610281352
       type: {class: RPCParamRectInt, ns: RPC, asm: Assembly-CSharp}
       data:
         name: rectIntVal
@@ -147,7 +147,7 @@ MonoBehaviour:
           y: 1
           width: 1
           height: 1
-    - rid: 6761962985610281325
+    - rid: 6761962985610281353
       type: {class: RPCParamBool, ns: RPC, asm: Assembly-CSharp}
       data:
         name: boolVal
@@ -156,7 +156,7 @@ MonoBehaviour:
         min: 0
         max: 0
         value: 0
-    - rid: 6761962985610281326
+    - rid: 6761962985610281354
       type: {class: RPCParamString, ns: RPC, asm: Assembly-CSharp}
       data:
         name: stringVal
