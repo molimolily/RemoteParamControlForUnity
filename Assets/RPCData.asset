@@ -13,36 +13,155 @@ MonoBehaviour:
   m_Name: RPCData
   m_EditorClassIdentifier: 
   parameters:
-  - rid: 8005765714968838156
-  - rid: 8005765714968838157
-  - rid: 8005765714968838158
+  - rid: 6761962985610281313
+  - rid: 6761962985610281314
+  - rid: 6761962985610281315
+  - rid: 6761962985610281316
+  - rid: 6761962985610281317
+  - rid: 6761962985610281318
+  - rid: 6761962985610281319
+  - rid: 6761962985610281320
+  - rid: 6761962985610281321
+  - rid: 6761962985610281322
+  - rid: 6761962985610281323
+  - rid: 6761962985610281324
+  - rid: 6761962985610281325
+  - rid: 6761962985610281326
   references:
     version: 2
     RefIds:
-    - rid: 8005765714968838156
+    - rid: 6761962985610281313
       type: {class: RPCParamInt, ns: RPC, asm: Assembly-CSharp}
       data:
         name: intVal
-        layoutType: 4
-        address: value0
+        layoutType: 1
+        address: value/i
         min: 0
         max: 0
         value: 0
-    - rid: 8005765714968838157
+    - rid: 6761962985610281314
       type: {class: RPCParamFloat, ns: RPC, asm: Assembly-CSharp}
       data:
         name: floatVal
         layoutType: 0
-        address: floatVal
+        address: value/f
+        min: 0
+        max: 0
+        value: 0
+    - rid: 6761962985610281315
+      type: {class: RPCParamFloat, ns: RPC, asm: Assembly-CSharp}
+      data:
+        name: sliderVal
+        layoutType: 2
+        address: Slider/f
         min: 0
         max: 1
-        value: 1
-    - rid: 8005765714968838158
+        value: 0
+    - rid: 6761962985610281316
+      type: {class: RPCParamInt, ns: RPC, asm: Assembly-CSharp}
+      data:
+        name: intSliderVal
+        layoutType: 3
+        address: Slider/i
+        min: 0
+        max: 10
+        value: 0
+    - rid: 6761962985610281317
       type: {class: RPCParamVector2, ns: RPC, asm: Assembly-CSharp}
       data:
         name: vector2Val
-        layoutType: 5
-        address: Sample/Data
+        layoutType: 4
+        address: vec2/f
         min: 0
         max: 0
         value: {x: 1, y: 1}
+    - rid: 6761962985610281318
+      type: {class: RPCParamVector2Int, ns: RPC, asm: Assembly-CSharp}
+      data:
+        name: vector2IntVal
+        layoutType: 5
+        address: vec2/i
+        min: 0
+        max: 0
+        value: {x: 1, y: 1}
+    - rid: 6761962985610281319
+      type: {class: RPCParamVector3, ns: RPC, asm: Assembly-CSharp}
+      data:
+        name: vector3Val
+        layoutType: 6
+        address: vec3/f
+        min: 0
+        max: 0
+        value: {x: 1, y: 1, z: 1}
+    - rid: 6761962985610281320
+      type: {class: RPCParamVector3Int, ns: RPC, asm: Assembly-CSharp}
+      data:
+        name: vector3IntVal
+        layoutType: 7
+        address: vec3/i
+        min: 0
+        max: 0
+        value: {x: 1, y: 1, z: 1}
+    - rid: 6761962985610281321
+      type: {class: RPCParamVector4, ns: RPC, asm: Assembly-CSharp}
+      data:
+        name: vector4Val
+        layoutType: 8
+        address: vec4/f
+        min: 0
+        max: 0
+        value: {x: 1, y: 1, z: 1, w: 1}
+    - rid: 6761962985610281322
+      type: {class: RPCParamColor, ns: RPC, asm: Assembly-CSharp}
+      data:
+        name: colorVal
+        layoutType: 9
+        address: color
+        min: 0
+        max: 0
+        value: {r: 1, g: 1, b: 1, a: 1}
+    - rid: 6761962985610281323
+      type: {class: RPCParamRect, ns: RPC, asm: Assembly-CSharp}
+      data:
+        name: rectVal
+        layoutType: 10
+        address: rect/f
+        min: 0
+        max: 0
+        value:
+          serializedVersion: 2
+          x: 1
+          y: 1
+          width: 1
+          height: 1
+    - rid: 6761962985610281324
+      type: {class: RPCParamRectInt, ns: RPC, asm: Assembly-CSharp}
+      data:
+        name: rectIntVal
+        layoutType: 11
+        address: rect/i
+        min: 0
+        max: 0
+        value:
+          x: 1
+          y: 1
+          width: 1
+          height: 1
+    - rid: 6761962985610281325
+      type: {class: RPCParamBool, ns: RPC, asm: Assembly-CSharp}
+      data:
+        name: boolVal
+        layoutType: 12
+        address: bool
+        min: 0
+        max: 0
+        value: 0
+    - rid: 6761962985610281326
+      type: {class: RPCParamString, ns: RPC, asm: Assembly-CSharp}
+      data:
+        name: stringVal
+        layoutType: 13
+        address: text
+        min: 0
+        max: 0
+        value: Hello, World!

@@ -268,6 +268,22 @@ namespace RPC
         }
     }
 
+    public class RPCToggleField : RPCEditorLayout<bool>
+    {
+        public RPCToggleField(GUIContent label, bool value) : base(label, value)
+        {
+        }
+
+        public RPCToggleField(string label, bool value) : base(new GUIContent(label), value)
+        {
+        }
+
+        protected override void Update()
+        {
+            Value = EditorGUILayout.Toggle(Label, Value);
+        }
+    }
+
     public class RPCTextField : RPCEditorLayout<string>
     {
         public RPCTextField(GUIContent label, string value) : base(label, value)

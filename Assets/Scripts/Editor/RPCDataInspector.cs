@@ -24,7 +24,6 @@ namespace RPC
                 EditorGUILayout.BeginVertical("box");
                 EditorGUILayout.LabelField("Name", param.name);
                 EditorGUILayout.LabelField("Layout Type", param.layoutType.ToString());
-                // EditorGUILayout.LabelField("Type", param.type?.ToString());
                 EditorGUILayout.LabelField("Value", param.GetValue() != null ? param.GetValue().ToString() : "null");
                 EditorGUILayout.LabelField("Address", param.address);
                 EditorGUILayout.EndVertical();

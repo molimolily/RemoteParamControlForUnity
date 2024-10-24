@@ -55,14 +55,6 @@ namespace RPC
                 if(paramFoldState)
                 {
                     DrawParamLayouts();
-
-                    using (var change = new EditorGUI.ChangeCheckScope())
-                    {
-                        if(change.changed)
-                        {
-                            Debug.Log("Changed");
-                        }
-                    }
                 }
 
                 EditorGUILayout.EndFoldoutHeaderGroup();
@@ -70,20 +62,20 @@ namespace RPC
             else
             {
                 RPCDataLayout();
-                NetworkLayout();   
-                if (rpcOscConnection.Value != null)
+                NetworkLayout();
+
+                EditorGUILayout.Space();
+
+                EditorGUI.BeginDisabledGroup(rpcData.Value == null || rpcOscConnection.Value == null);
+                if (GUILayout.Button("Start", GUILayout.Height(40.0f)))
                 {
-                    if (GUILayout.Button("Start", GUILayout.Height(40.0f)))
-                    {
-                        StartCliant();
-                        GenerateEditorLayout();
-                    }
+                    StartCliant();
+                    GenerateEditorLayout();
                 }
-                else
-                {
-                    GUILayout.Label("Assign RPC Manager to start OSC Client");
-                }
+                EditorGUI.EndDisabledGroup();
             }
+
+            EditorGUILayout.Space();
 
             EditorGUILayout.EndScrollView();
         }
@@ -113,6 +105,20 @@ namespace RPC
                 RPCEditorLayoutBase layout = null;
                 switch (rpcParam.layoutType)
                 {
+                    case RPCLayoutType.FloatField:
+                        layout = new RPCFloatField(rpcParam.name, (float)rpcParam.GetValue());
+                        layout.OnValueChanged += (value) =>
+                        {
+                            client.Send(rpcParam.address, (float)value);
+                        };
+                        break;
+                    case RPCLayoutType.IntField:
+                        layout = new RPCIntField(rpcParam.name, (int)rpcParam.GetValue());
+                        layout.OnValueChanged += (value) =>
+                        {
+                            client.Send(rpcParam.address, (int)value);
+                        };
+                        break;
                     case RPCLayoutType.Slider:
                         layout = new RPCSlider(rpcParam.name, (float)rpcParam.GetValue(), rpcParam.min, rpcParam.max);
                         layout.OnValueChanged += (value) =>
@@ -127,27 +133,6 @@ namespace RPC
                             client.Send(rpcParam.address, (int)value);
                         };
                         break;
-                    case RPCLayoutType.IntField:
-                        layout = new RPCIntField(rpcParam.name, (int)rpcParam.GetValue());
-                        layout.OnValueChanged += (value) =>
-                        {
-                            client.Send(rpcParam.address, (int)value);
-                        };
-                        break;
-                    case RPCLayoutType.FloatField:
-                        layout = new RPCFloatField(rpcParam.name, (float)rpcParam.GetValue());
-                        layout.OnValueChanged += (value) =>
-                        {
-                            client.Send(rpcParam.address, (float)value);
-                        };
-                        break;
-                    case RPCLayoutType.Toggle:
-                        layout = new RPCToggle(rpcParam.name, (bool)rpcParam.GetValue());
-                        layout.OnValueChanged += (value) =>
-                        {
-                            client.Send(rpcParam.address, (int)value);
-                        };
-                        break;
                     case RPCLayoutType.Vector2Field:
                         layout = new RPCVector2Field(rpcParam.name, (Vector2)rpcParam.GetValue());
                         layout.OnValueChanged += (value) =>
@@ -156,11 +141,27 @@ namespace RPC
                             client.Send(rpcParam.address, v.x, v.y);
                         };
                         break;
+                    case RPCLayoutType.Vector2IntField:
+                        layout = new RPCVector2IntField(rpcParam.name, (Vector2Int)rpcParam.GetValue());
+                        layout.OnValueChanged += (value) =>
+                        {
+                            Vector2Int v = (Vector2Int)value;
+                            client.Send(rpcParam.address, v.x, v.y);
+                        };
+                        break;
                     case RPCLayoutType.Vector3Field:
                         layout = new RPCVector3Field(rpcParam.name, (Vector3)rpcParam.GetValue());
                         layout.OnValueChanged += (value) =>
                         {
                             Vector3 v = (Vector3)value;
+                            client.Send(rpcParam.address, v.x, v.y, v.z);
+                        };
+                        break;
+                    case RPCLayoutType.Vector3IntField:
+                        layout = new RPCVector3IntField(rpcParam.name, (Vector3Int)rpcParam.GetValue());
+                        layout.OnValueChanged += (value) =>
+                        {
+                            Vector3Int v = (Vector3Int)value;
                             client.Send(rpcParam.address, v.x, v.y, v.z);
                         };
                         break;
@@ -196,6 +197,13 @@ namespace RPC
                             client.Send(rpcParam.address, r.x, r.y, r.width, r.height);
                         };
                         break;
+                    case RPCLayoutType.Toggle:
+                        layout = new RPCToggleField(rpcParam.name, (bool)rpcParam.GetValue());
+                        layout.OnValueChanged += (value) =>
+                        {
+                            client.Send(rpcParam.address, (bool)value ? 1 : 0);
+                        };
+                        break;
                     case RPCLayoutType.TextField:
                         layout = new RPCTextField(rpcParam.name, (string)rpcParam.GetValue());
                         layout.OnValueChanged += (value) =>
@@ -218,6 +226,7 @@ namespace RPC
             foreach (RPCEditorLayoutBase layout in rpcLayouts)
             {
                 layout.Draw();
+                EditorGUILayout.Space();
             }
         }
 
@@ -242,19 +251,24 @@ namespace RPC
 
         private void NetworkLayout()
         {
-            networkFoldState = EditorGUILayout.BeginFoldoutHeaderGroup(networkFoldState, "Network");
-            if(networkFoldState)
+            EditorGUILayout.LabelField("Network", EditorStyles.boldLabel);
+
+            EditorGUI.BeginDisabledGroup(isStarted);
+            rpcOscConnection.Draw();
+            EditorGUI.EndDisabledGroup();
+
+            if (isStarted)
             {
-                EditorGUI.BeginDisabledGroup(isStarted);
-                rpcOscConnection.Draw();
-                if (isStarted)
+                networkFoldState = EditorGUILayout.BeginFoldoutHeaderGroup(networkFoldState, "Settings");
+                if (networkFoldState)
                 {
+                    EditorGUI.BeginDisabledGroup(true);
                     EditorGUILayout.TextField("Host", rpcOscConnection.Value.host);
                     EditorGUILayout.IntField("Port", rpcOscConnection.Value.port);
+                    EditorGUI.EndDisabledGroup();
                 }
-                EditorGUI.EndDisabledGroup();
+                EditorGUILayout.EndFoldoutHeaderGroup();
             }
-            EditorGUILayout.EndFoldoutHeaderGroup();
         }
 
         private void RPCDataLayout()
