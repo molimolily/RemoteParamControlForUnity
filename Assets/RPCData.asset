@@ -12,5 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 942652b25ae44f041bd78b05dfb72db8, type: 3}
   m_Name: RPCData
   m_EditorClassIdentifier: 
-  ipAddress: 127.0.0.1
-  port: 7000
+  testInt: 2
+  parameters:
+  - name: intVal
+    layoutType: 4
+    address: value0
+  - name: floatVal
+    layoutType: 3
+    address: floatVal
+  - name: vector2Val
+    layoutType: 5
+    address: Sample/Data

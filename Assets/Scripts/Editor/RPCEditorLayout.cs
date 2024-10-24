@@ -5,10 +5,11 @@ using UnityEngine;
 
 namespace RPC
 {
+    [System.Serializable]
     public abstract class RPCEditorLayout<T>
     {
         public GUIContent Label { get; protected set; }
-        public T Value { get; protected set; }
+        [SerializeField] public T Value { get; protected set; }
         public T prevValue { get; protected set; }
 
         public delegate void ValueChangedHandler(T newValue);
@@ -288,6 +289,7 @@ namespace RPC
         }
     }
 
+    [System.Serializable]
     public class RPCLayoutObjectField<T> : RPCEditorLayout<T> where T : Object
     {
         public RPCLayoutObjectField(GUIContent label, T value) : base(label, value)

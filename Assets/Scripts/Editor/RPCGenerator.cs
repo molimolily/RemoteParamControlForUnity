@@ -11,8 +11,9 @@ namespace RPC
     public class RPCGenerator : EditorWindow
     {
 
-        private RPCLayoutObjectField<RPCSetter> targetFiled;
-        private RPCLayoutObjectField<RPCData> rpcDataFiled;
+        [SerializeField] private RPCLayoutObjectField<RPCSetter> targetFiled;
+
+        [SerializeField] private RPCLayoutObjectField<RPCData> rpcDataFiled;
 
         private Vector2 scrollPos;
 
@@ -22,10 +23,11 @@ namespace RPC
             GetWindow<RPCGenerator>().Show();
         }
 
-        private void OnEnable()
+        private void Awake()
         {
-            targetFiled = new RPCLayoutObjectField<RPCSetter>("Target", null);
-            rpcDataFiled = new RPCLayoutObjectField<RPCData>("RPCData", null);
+            Debug.Log("RPC Generator awake");
+            targetFiled = new RPCLayoutObjectField<RPCSetter>(new GUIContent("Target"), null);
+            rpcDataFiled = new RPCLayoutObjectField<RPCData>(new GUIContent("RPC Data"), null);
         }
 
         private void OnGUI()
@@ -51,16 +53,15 @@ namespace RPC
 
         private void GenerateRPCData()
         {
-            FieldInfo[] fields = targetFiled.Value.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            FieldInfo[] fields = targetFiled.Value.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance);
             List<RPCParam> rpcParameters = new List<RPCParam>();
             foreach (FieldInfo field in fields)
             {
                 if (field.GetCustomAttribute(typeof(RPC.RemoteControllableAttribute)) != null)
                 {
-                    // Debug.Log($"Controllable Field: {field.Name}, Current Value: {field.GetValue(targetFiled.Value)}");
                     string name = field.Name;
-                    Type type = field.FieldType;
                     object value = field.GetValue(targetFiled.Value);
+                    Type type = field.FieldType;
 
                     RPCLayoutType layoutType = RPCLayoutType.IntField;
                     switch(type)
@@ -76,9 +77,18 @@ namespace RPC
                             break;
                     }
 
-                    Debug.Log($"Name: {name}, Type: {type}, Value: {value}, LayoutType: {layoutType.ToString()}");
+                    string address = field.GetCustomAttribute<RemoteControllableAttribute>().Address ?? name;
+
+                    RPCParam param = new RPCParam(name, layoutType, type, value, address);
+                    rpcParameters.Add(param);
+
+                    Debug.Log($"Name: {name}, Type: {type}, Value: {value}, LayoutType: {layoutType.ToString()}, Address: {address}");
                 }
             }
+            rpcDataFiled.Value.parameters = rpcParameters;
+            EditorUtility.SetDirty(rpcDataFiled.Value);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
         }
     }
 }
