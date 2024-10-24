@@ -12,14 +12,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 942652b25ae44f041bd78b05dfb72db8, type: 3}
   m_Name: RPCData
   m_EditorClassIdentifier: 
-  testInt: 2
   parameters:
-  - name: intVal
-    layoutType: 4
-    address: value0
-  - name: floatVal
-    layoutType: 3
-    address: floatVal
-  - name: vector2Val
-    layoutType: 5
-    address: Sample/Data
+  - rid: 8005765714968838156
+  - rid: 8005765714968838157
+  - rid: 8005765714968838158
+  references:
+    version: 2
+    RefIds:
+    - rid: 8005765714968838156
+      type: {class: RPCParamInt, ns: RPC, asm: Assembly-CSharp}
+      data:
+        name: intVal
+        layoutType: 4
+        address: value0
+        min: 0
+        max: 0
+        value: 0
+    - rid: 8005765714968838157
+      type: {class: RPCParamFloat, ns: RPC, asm: Assembly-CSharp}
+      data:
+        name: floatVal
+        layoutType: 0
+        address: floatVal
+        min: 0
+        max: 1
+        value: 1
+    - rid: 8005765714968838158
+      type: {class: RPCParamVector2, ns: RPC, asm: Assembly-CSharp}
+      data:
+        name: vector2Val
+        layoutType: 5
+        address: Sample/Data
+        min: 0
+        max: 0
+        value: {x: 1, y: 1}

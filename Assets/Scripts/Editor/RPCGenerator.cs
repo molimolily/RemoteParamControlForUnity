@@ -25,7 +25,6 @@ namespace RPC
 
         private void Awake()
         {
-            Debug.Log("RPC Generator awake");
             targetFiled = new RPCLayoutObjectField<RPCSetter>(new GUIContent("Target"), null);
             rpcDataFiled = new RPCLayoutObjectField<RPCData>(new GUIContent("RPC Data"), null);
         }
@@ -54,7 +53,7 @@ namespace RPC
         private void GenerateRPCData()
         {
             FieldInfo[] fields = targetFiled.Value.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance);
-            List<RPCParam> rpcParameters = new List<RPCParam>();
+            List<RPCParamBase> rpcParameters = new List<RPCParamBase>();
             foreach (FieldInfo field in fields)
             {
                 if (field.GetCustomAttribute(typeof(RPC.RemoteControllableAttribute)) != null)
@@ -62,27 +61,80 @@ namespace RPC
                     string name = field.Name;
                     object value = field.GetValue(targetFiled.Value);
                     Type type = field.FieldType;
-
-                    RPCLayoutType layoutType = RPCLayoutType.IntField;
-                    switch(type)
+                    string address = field.GetCustomAttribute<RemoteControllableAttribute>().Address ?? name;
+                    RangeAttribute rangeAttribute = (RangeAttribute)Attribute.GetCustomAttribute(field, typeof(RangeAttribute));
+                    RPCLayoutType layoutType = 0;
+                    RPCParamBase param = null;
+                    switch (type)
                     {
                         case Type t when t == typeof(int):
-                            layoutType = RPCLayoutType.IntField;
+                            if(rangeAttribute == null)
+                            {
+                                layoutType = RPCLayoutType.IntField;
+                                param = new RPCParamInt(name, layoutType, (int)value, address);
+                            }
+                            else
+                            {
+                                layoutType = RPCLayoutType.IntSlider;
+                                param = new RPCParamInt(name, layoutType, (int)value, address);
+                                param.min = rangeAttribute.min;
+                                param.max = rangeAttribute.max;
+                            }
                             break;
                         case Type t when t == typeof(float):
-                            layoutType = RPCLayoutType.FloatField;
+                            if(rangeAttribute == null)
+                            {
+                                layoutType = RPCLayoutType.FloatField;
+                                param = new RPCParamFloat(name, layoutType, (float)value, address);
+                            }
+                            else
+                            {
+                                layoutType = RPCLayoutType.Slider;
+                                param = new RPCParamFloat(name, layoutType, (float)value, address);
+                                param.min = rangeAttribute.min;
+                                param.max = rangeAttribute.max;
+                            }
                             break;
                         case Type t when t == typeof(Vector2):
                             layoutType = RPCLayoutType.Vector2Field;
+                            param = new RPCParamVector2(name, layoutType, (Vector2)value, address);
+                            break;
+                        case Type t when t == typeof(Vector2Int):
+                            layoutType = RPCLayoutType.Vector2IntField;
+                            // param = new RPCParamVector2Int(name, layoutType, (Vector2Int)value, address);
+                            break;
+                        case Type t when t == typeof(Vector3):
+                            layoutType = RPCLayoutType.Vector3Field;
+                            // param = new RPCParamVector3(name, layoutType, (Vector3)value, address);
+                            break;
+                        case Type t when t == typeof(Vector3Int):
+                            layoutType = RPCLayoutType.Vector3IntField;
+                            // param = new RPCParamVector3Int(name, layoutType, (Vector3Int)value, address);
+                            break;
+                        case Type t when t == typeof(Vector4):
+                            layoutType = RPCLayoutType.Vector4Field;
+                            // param = new RPCParamVector4(name, layoutType, (Vector4)value, address);
+                            break;
+                        case Type t when t == typeof(Color):
+                            layoutType = RPCLayoutType.ColorField;
+                            // param = new RPCParamColor(name, layoutType, (Color)value, address);
+                            break;
+                        case Type t when t == typeof(Rect):
+                            layoutType = RPCLayoutType.RectField;
+                            // param = new RPCParamRect(name, layoutType, (Rect)value, address);
+                            break;
+                        case Type t when t == typeof(RectInt):
+                            layoutType = RPCLayoutType.RectIntField;
+                            // param = new RPCParamRectInt(name, layoutType, (RectInt)value, address);
+                            break;
+                        case Type t when t == typeof(string):
+                            layoutType = RPCLayoutType.TextField;
+                            // param = new RPCParamString(name, layoutType, (string)value, address);
                             break;
                     }
 
-                    string address = field.GetCustomAttribute<RemoteControllableAttribute>().Address ?? name;
-
-                    RPCParam param = new RPCParam(name, layoutType, type, value, address);
-                    rpcParameters.Add(param);
-
-                    Debug.Log($"Name: {name}, Type: {type}, Value: {value}, LayoutType: {layoutType.ToString()}, Address: {address}");
+                    if (param != null)
+                        rpcParameters.Add(param);
                 }
             }
             rpcDataFiled.Value.parameters = rpcParameters;

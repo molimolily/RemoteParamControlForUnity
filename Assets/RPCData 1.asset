@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 942652b25ae44f041bd78b05dfb72db8, type: 3}
+  m_Name: RPCData 1
+  m_EditorClassIdentifier: 
+  testInt: 0
+  parameters:
+  - name: intVal
+    layoutType: 4
+    address: value0
+    value:
+      rid: 8005765714285428737
+  - name: floatVal
+    layoutType: 3
+    address: floatVal
+    value:
+      rid: 8005765714285428738
+  - name: vector2Val
+    layoutType: 5
+    address: Sample/Data
+    value:
+      rid: 8005765714285428739
+  references:
+    version: 2
+    RefIds:
+    - rid: 8005765714285428737
+      type: {class: Int32, ns: System, asm: mscorlib}
+      data: 
+    - rid: 8005765714285428738
+      type: {class: Single, ns: System, asm: mscorlib}
+      data: 
+    - rid: 8005765714285428739
+      type: {class: Vector2, ns: UnityEngine, asm: UnityEngine.CoreModule}
+      data:
+        x: 1
+        y: 1

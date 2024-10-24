@@ -5,15 +5,26 @@ using UnityEngine;
 
 namespace RPC
 {
-    [System.Serializable]
-    public abstract class RPCEditorLayout<T>
+    public abstract class RPCEditorLayoutBase
     {
         public GUIContent Label { get; protected set; }
+
+        public delegate void ValueChangedHandler(object newValue);
+        public event ValueChangedHandler OnValueChanged;
+
+        public abstract void Draw();
+
+        protected void TriggerValueChanged(object newValue)
+        {
+            OnValueChanged?.Invoke(newValue);
+        }
+    }
+
+    [System.Serializable]
+    public abstract class RPCEditorLayout<T> : RPCEditorLayoutBase
+    {
         [SerializeField] public T Value { get; protected set; }
         public T prevValue { get; protected set; }
-
-        public delegate void ValueChangedHandler(T newValue);
-        public event ValueChangedHandler OnValueChanged;
 
         public RPCEditorLayout(GUIContent label, T value)
         {
@@ -27,10 +38,10 @@ namespace RPC
         {
             if (!EqualityComparer<T>.Default.Equals(prevValue, Value))
             {
-                OnValueChanged?.Invoke(Value);
+                TriggerValueChanged(Value);
             }
         }
-        public virtual void Draw()
+        public override void Draw()
         {
             this.prevValue = this.Value;
             Update();
@@ -97,13 +108,13 @@ namespace RPC
         }
     }
 
-    public class RPCFloat : RPCEditorLayout<float>
+    public class RPCFloatField : RPCEditorLayout<float>
     {
-        public RPCFloat(GUIContent label, float value) : base(label, value)
+        public RPCFloatField(GUIContent label, float value) : base(label, value)
         {
         }
 
-        public RPCFloat(string label, float value) : this(new GUIContent(label), value)
+        public RPCFloatField(string label, float value) : this(new GUIContent(label), value)
         {
         }
 
@@ -113,13 +124,13 @@ namespace RPC
         }
     }
 
-    public class RPCInt : RPCEditorLayout<int>
+    public class RPCIntField : RPCEditorLayout<int>
     {
-        public RPCInt(GUIContent label, int value) : base(label, value)
+        public RPCIntField(GUIContent label, int value) : base(label, value)
         {
         }
 
-        public RPCInt(string label, int value) : this(new GUIContent(label), value)
+        public RPCIntField(string label, int value) : this(new GUIContent(label), value)
         {
         }
 
@@ -129,13 +140,13 @@ namespace RPC
         }
     }
 
-    public class RPCVector2 : RPCEditorLayout<Vector2>
+    public class RPCVector2Field : RPCEditorLayout<Vector2>
     {
-        public RPCVector2(GUIContent label, Vector2 value) : base(label, value)
+        public RPCVector2Field(GUIContent label, Vector2 value) : base(label, value)
         {
         }
 
-        public RPCVector2(string label, Vector2 value) : this(new GUIContent(label), value)
+        public RPCVector2Field(string label, Vector2 value) : this(new GUIContent(label), value)
         {
         }
 
@@ -145,13 +156,13 @@ namespace RPC
         }
     }
 
-    public class RPCVector2Int : RPCEditorLayout<Vector2Int>
+    public class RPCVector2IntField : RPCEditorLayout<Vector2Int>
     {
-        public RPCVector2Int(GUIContent label, Vector2Int value) : base(label, value)
+        public RPCVector2IntField(GUIContent label, Vector2Int value) : base(label, value)
         {
         }
 
-        public RPCVector2Int(string label, Vector2Int value) : this(new GUIContent(label), value)
+        public RPCVector2IntField(string label, Vector2Int value) : this(new GUIContent(label), value)
         {
         }
 
@@ -161,13 +172,13 @@ namespace RPC
         }
     }
 
-    public class RPCVector3 : RPCEditorLayout<Vector3>
+    public class RPCVector3Field : RPCEditorLayout<Vector3>
     {
-        public RPCVector3(GUIContent label, Vector3 value) : base(label, value)
+        public RPCVector3Field(GUIContent label, Vector3 value) : base(label, value)
         {
         }
 
-        public RPCVector3(string label, Vector3 value) : this(new GUIContent(label), value)
+        public RPCVector3Field(string label, Vector3 value) : this(new GUIContent(label), value)
         {
         }
 
@@ -177,13 +188,13 @@ namespace RPC
         }
     }
 
-    public class RPCVector3Int : RPCEditorLayout<Vector3Int>
+    public class RPCVector3IntField : RPCEditorLayout<Vector3Int>
     {
-        public RPCVector3Int(GUIContent label, Vector3Int value) : base(label, value)
+        public RPCVector3IntField(GUIContent label, Vector3Int value) : base(label, value)
         {
         }
 
-        public RPCVector3Int(string label, Vector3Int value) : this(new GUIContent(label), value)
+        public RPCVector3IntField(string label, Vector3Int value) : this(new GUIContent(label), value)
         {
         }
 
@@ -193,13 +204,13 @@ namespace RPC
         }
     }
 
-    public class RPCVector4 : RPCEditorLayout<Vector4>
+    public class RPCVector4Field : RPCEditorLayout<Vector4>
     {
-        public RPCVector4(GUIContent label, Vector4 value) : base(label, value)
+        public RPCVector4Field(GUIContent label, Vector4 value) : base(label, value)
         {
         }
 
-        public RPCVector4(string label, Vector4 value) : this(new GUIContent(label), value)
+        public RPCVector4Field(string label, Vector4 value) : this(new GUIContent(label), value)
         {
         }
 
