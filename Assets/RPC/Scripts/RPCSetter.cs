@@ -16,15 +16,19 @@ namespace RPC
 
         protected virtual void OnEnable()
         {
+#if UNITY_STANDALONE
             oscServer = new OscServer(oscConnection.port);
             addressParameterTypes = GetAddressParameterTypes();
             SetCallbacks();
+#endif
         }
 
         protected virtual void OnDisable()
         {
+#if UNITY_STANDALONE
             oscServer?.Dispose();
             oscServer = null;
+#endif
         }
 
         protected abstract void SetCallbacks();
