@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace RPC
 {
+    /// <summary>
+    /// RPCSetter is an abstract base class for setting up remote parameter control via OSC.
+    /// </summary>
     public abstract class RPCSetter : MonoBehaviour
     {
         [SerializeField] OscConnection oscConnection;
@@ -32,8 +35,15 @@ namespace RPC
 #endif
         }
 
+        /// <summary>
+        /// Abstract method to set up callbacks for OSC messages.
+        /// </summary>
         protected abstract void SetCallbacks();
 
+        /// <summary>
+        /// Retrieves the parameter types for each address from the fields marked with RemoteControllableAttribute.
+        /// </summary>
+        /// <returns>A dictionary mapping addresses to their parameter types.</returns>
         private Dictionary<string, Type> GetAddressParameterTypes()
         {
             var addressParameterTypes = new Dictionary<string, Type>();
@@ -49,6 +59,12 @@ namespace RPC
             return addressParameterTypes;
         }
 
+        /// <summary>
+        /// Converts OSC data to the appropriate type based on the address.
+        /// </summary>
+        /// <param name="address">The OSC address.</param>
+        /// <param name="data">The OSC data handle.</param>
+        /// <returns>The converted value.</returns>
         protected object GetValueFromOscData(string address, OscDataHandle data)
         {
             if (!addressParameterTypes.ContainsKey(address))
@@ -111,6 +127,11 @@ namespace RPC
             }
         }
 
+        /// <summary>
+        /// Adds a callback for a specific OSC address.
+        /// </summary>
+        /// <param name="address">The OSC address.</param>
+        /// <param name="callback">The callback to be invoked when a message is received.</param>
         protected void AddCallback(string address, Action<object> callback)
         {
             oscServer.MessageDispatcher.AddCallback(
@@ -123,6 +144,10 @@ namespace RPC
             );
         }
 
+        /// <summary>
+        /// Enqueues an action to be executed on the main thread.
+        /// </summary>
+        /// <param name="action">The action to be executed.</param>
         protected void EnqueueMainThreadAction(Action action)
         {
             lock (mainThreadActions)
