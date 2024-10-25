@@ -7,6 +7,6 @@
         "name": "molimolily"
     },
     "dependencies": {
-        "jp.keijiro.osc-jack": "2.0.0"
+        "jp.keijiro.osc-jack": "https://github.com/keijiro/OscJack.git?path=Packages/jp.keijiro.osc-jack#2.0.0"
     }
 }
