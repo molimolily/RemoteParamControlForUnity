@@ -41,7 +41,7 @@ namespace RPC
                 EditorGUILayout.Space();
 
                 // Stop OSC Client
-                if (GUILayout.Button("Stop OSC Client", GUILayout.Height(30.0f)))
+                if (GUILayout.Button("Stop", GUILayout.Height(30.0f)))
                 {
                     StopCliant();
                 }
