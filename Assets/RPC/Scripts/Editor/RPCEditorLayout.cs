@@ -14,10 +14,12 @@ namespace RPC
 
         public abstract void Draw();
 
-        protected void TriggerValueChanged(object newValue)
+        public void TriggerValueChanged(object newValue)
         {
             OnValueChanged?.Invoke(newValue);
         }
+
+        public abstract object GetValue();
     }
 
     [System.Serializable]
@@ -48,6 +50,10 @@ namespace RPC
             CheckAndTriggerValueChanged();
         }
 
+        public override object GetValue()
+        {
+            return Value;
+        }
     }
 
     public class RPCSlider : RPCEditorLayout<float>
@@ -68,6 +74,11 @@ namespace RPC
         protected override void Update()
         {
             Value = EditorGUILayout.Slider(Label, Value, MinValue, MaxValue);
+        }
+
+        public override object GetValue()
+        {
+            return Value;
         }
     }
 
@@ -90,6 +101,11 @@ namespace RPC
         {
             Value = EditorGUILayout.IntSlider(Label, Value, MinValue, MaxValue);
         }
+
+        public override object GetValue()
+        {
+            return Value;
+        }
     }
 
     public class RPCToggle : RPCEditorLayout<bool>
@@ -105,6 +121,11 @@ namespace RPC
         protected override void Update()
         {
             Value = EditorGUILayout.Toggle(Label, Value);
+        }
+
+        public override object GetValue()
+        {
+            return Value;
         }
     }
 
@@ -122,6 +143,11 @@ namespace RPC
         {
             Value = EditorGUILayout.FloatField(Label, Value);
         }
+
+        public override object GetValue()
+        {
+            return Value;
+        }
     }
 
     public class RPCIntField : RPCEditorLayout<int>
@@ -137,6 +163,11 @@ namespace RPC
         protected override void Update()
         {
             Value = EditorGUILayout.IntField(Label, Value);
+        }
+
+        public override object GetValue()
+        {
+            return Value;
         }
     }
 
@@ -154,6 +185,11 @@ namespace RPC
         {
             Value = EditorGUILayout.Vector2Field(Label, Value);
         }
+
+        public override object GetValue()
+        {
+            return Value;
+        }
     }
 
     public class RPCVector2IntField : RPCEditorLayout<Vector2Int>
@@ -169,6 +205,11 @@ namespace RPC
         protected override void Update()
         {
             Value = EditorGUILayout.Vector2IntField(Label, Value);
+        }
+
+        public override object GetValue()
+        {
+            return Value;
         }
     }
 
@@ -186,6 +227,11 @@ namespace RPC
         {
             Value = EditorGUILayout.Vector3Field(Label, Value);
         }
+
+        public override object GetValue()
+        {
+            return Value;
+        }
     }
 
     public class RPCVector3IntField : RPCEditorLayout<Vector3Int>
@@ -201,6 +247,11 @@ namespace RPC
         protected override void Update()
         {
             Value = EditorGUILayout.Vector3IntField(Label, Value);
+        }
+
+        public override object GetValue()
+        {
+            return Value;
         }
     }
 
@@ -218,6 +269,11 @@ namespace RPC
         {
             Value = EditorGUILayout.Vector4Field(Label, Value);
         }
+
+        public override object GetValue()
+        {
+            return Value;
+        }
     }
 
     public class RPCColorField : RPCEditorLayout<Color>
@@ -233,6 +289,11 @@ namespace RPC
         protected override void Update()
         {
             Value = EditorGUILayout.ColorField(Label, Value);
+        }
+
+        public override object GetValue()
+        {
+            return Value;
         }
     }
 
@@ -250,6 +311,11 @@ namespace RPC
         {
             Value = EditorGUILayout.RectField(Label, Value);
         }
+
+        public override object GetValue()
+        {
+            return Value;
+        }
     }
 
     public class RPCRectIntField : RPCEditorLayout<RectInt>
@@ -265,6 +331,11 @@ namespace RPC
         protected override void Update()
         {
             Value = EditorGUILayout.RectIntField(Label, Value);
+        }
+
+        public override object GetValue()
+        {
+            return Value;
         }
     }
 
@@ -282,6 +353,11 @@ namespace RPC
         {
             Value = EditorGUILayout.Toggle(Label, Value);
         }
+
+        public override object GetValue()
+        {
+            return Value;
+        }
     }
 
     public class RPCTextField : RPCEditorLayout<string>
@@ -297,6 +373,11 @@ namespace RPC
         protected override void Update()
         {
             Value = EditorGUILayout.TextField(Label, Value);
+        }
+
+        public override object GetValue()
+        {
+            return Value;
         }
     }
 
@@ -314,6 +395,11 @@ namespace RPC
         {
             Value = (T)(object)EditorGUILayout.EnumPopup(Label, (System.Enum)(object)Value);
         }
+
+        public override object GetValue()
+        {
+            return Value;
+        }
     }
 
     [System.Serializable]
@@ -330,6 +416,11 @@ namespace RPC
         protected override void Update()
         {
             Value = (T)(object)EditorGUILayout.ObjectField(Label, (Object)(object)Value, typeof(T), true);
+        }
+
+        public override object GetValue()
+        {
+            return Value;
         }
     }
 }

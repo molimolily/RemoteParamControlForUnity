@@ -21,7 +21,6 @@ public class RPCSample : MonoBehaviour
     private TextMeshProUGUI rectText;
     private TextMeshProUGUI rectIntText;
     private Toggle boolToggle;
-    private TMP_Dropdown enumDropDown;
 
     public int intVal = 0;
     public float floatVal = 0.0f;
@@ -56,11 +55,6 @@ public class RPCSample : MonoBehaviour
         rectText = canvas.transform.Find("Panel/Rect/Value").GetComponent<TextMeshProUGUI>();
         rectIntText = canvas.transform.Find("Panel/RectInt/Value").GetComponent<TextMeshProUGUI>();
         boolToggle = canvas.transform.Find("Panel/Bool/Value").GetComponent<Toggle>();
-        enumDropDown = canvas.transform.Find("Panel/Enum/Value").GetComponent<TMP_Dropdown>();
-        foreach (var layoutType in System.Enum.GetValues(typeof(RPC.RPCLayoutType)))
-        {
-            enumDropDown.options.Add(new TMP_Dropdown.OptionData(layoutType.ToString()));
-        }
     }
 
     // Update is called once per frame
@@ -80,6 +74,5 @@ public class RPCSample : MonoBehaviour
         rectText.text = rectVal.ToString();
         rectIntText.text = rectIntVal.ToString();
         boolToggle.isOn = boolVal;
-        enumDropDown.value = (int)layoutType;
     }
 }

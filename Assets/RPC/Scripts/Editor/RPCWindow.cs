@@ -71,6 +71,7 @@ namespace RPC
                 {
                     StartCliant();
                     GenerateEditorLayout();
+                    SendInitParams();
                 }
                 EditorGUI.EndDisabledGroup();
             }
@@ -218,6 +219,14 @@ namespace RPC
                     rpcLayouts.Add(layout);
                 }
 
+            }
+        }
+
+        private void SendInitParams()
+        {
+            foreach (RPCEditorLayoutBase layout in rpcLayouts)
+            {
+                layout.TriggerValueChanged(layout.GetValue());
             }
         }
 
