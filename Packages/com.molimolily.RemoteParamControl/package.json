@@ -1,0 +1,12 @@
+{
+    "name": "com.molimoliy.remoteparamcontrol",
+    "displayName": "RemoteParamControl",
+    "version": "0.0.1",
+    "description": "Control standalone application parameters from the editor in an inspector-like manner.\nエディタからスタンドアロンアプリケーションのパラメータを操作可能にします。",
+    "author": {
+        "name": "molimolily"
+    },
+    "dependencies": {
+        "jp.keijiro.osc-jack": "2.0.0"
+    }
+}

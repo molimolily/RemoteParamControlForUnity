@@ -1,5 +1,13 @@
 {
   "dependencies": {
+    "com.molimoliy.remoteparamcontrol": {
+      "version": "file:com.molimolily.RemoteParamControl",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "jp.keijiro.osc-jack": "2.0.0"
+      }
+    },
     "com.unity.burst": {
       "version": "1.8.8",
       "depth": 1,
