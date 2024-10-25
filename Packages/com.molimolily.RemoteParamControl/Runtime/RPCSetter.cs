@@ -1,6 +1,5 @@
 using OscJack;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
@@ -13,6 +12,8 @@ namespace RPC
 
         protected OscServer oscServer;
         private Dictionary<string, Type> addressParameterTypes;
+
+        private Queue<Action> mainThreadActions = new Queue<Action>();
 
         protected virtual void OnEnable()
         {
@@ -120,6 +121,25 @@ namespace RPC
                     callback(value);
                 }
             );
+        }
+
+        protected void EnqueueMainThreadAction(Action action)
+        {
+            lock (mainThreadActions)
+            {
+                mainThreadActions.Enqueue(action);
+            }
+        }
+
+        protected void Update()
+        {
+            lock (mainThreadActions)
+            {
+                while (mainThreadActions.Count > 0)
+                {
+                    mainThreadActions.Dequeue().Invoke();
+                }
+            }
         }
     }
 }

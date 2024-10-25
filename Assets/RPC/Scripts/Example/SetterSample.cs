@@ -1,13 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using RPC;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
-using OscJack;
 
 public class SetterSample : RPCSetter
 {
     [SerializeField] RPCSample rpcSample;
+    [SerializeField] GameObject cube;
+    Transform cubeTransform;
+    Material cubeMaterial;
 
     const string intValAdr = "value/i";
     const string floatValAdr = "value/f";
@@ -23,6 +22,10 @@ public class SetterSample : RPCSetter
     const string rectIntValAdr = "rect/i";
     const string boolValAdr = "bool";
     const string stringValAdr = "text";
+    const string posAddr = "cube/pos";
+    const string rotAddr = "cube/rot";
+    const string scaleAddr = "cube/scale";
+    const string colorAddr = "cube/color";
 
     [Header("Parameters")]
     [RemoteControllable(intValAdr)] public int intVal = 0;
@@ -39,6 +42,16 @@ public class SetterSample : RPCSetter
     [RemoteControllable(rectIntValAdr)] public RectInt rectIntVal = new RectInt(1, 1, 1, 1);
     [RemoteControllable(boolValAdr)] public bool boolVal = false;
     [RemoteControllable(stringValAdr)] public string stringVal = "Hello, World!";
+    [RemoteControllable(posAddr)] public Vector3 pos = Vector3.zero;
+    [RemoteControllable(rotAddr)] public Vector3 rot = Vector3.zero;
+    [RemoteControllable(scaleAddr)] public Vector3 scale = Vector3.one;
+    [RemoteControllable(colorAddr)] public Color color = Color.white;
+
+    private void Awake()
+    {
+        cubeTransform = cube.transform;
+        cubeMaterial = cube.GetComponent<Renderer>().material;
+    }
 
     protected override void SetCallbacks()
     {
@@ -56,5 +69,11 @@ public class SetterSample : RPCSetter
         AddCallback(rectIntValAdr, value => rpcSample.rectIntVal = (RectInt)value);
         AddCallback(boolValAdr, value => rpcSample.boolVal = (bool)value);
         AddCallback(stringValAdr, value => rpcSample.stringVal = (string)value);
+
+        // Register a callback to process on the main thread (Note: Unity API can only be called on the main thread)
+        AddCallback(posAddr, value => { EnqueueMainThreadAction(() => cubeTransform.position = (Vector3)value); });
+        AddCallback(rotAddr, value => { EnqueueMainThreadAction(() => cubeTransform.eulerAngles = (Vector3)value); });
+        AddCallback(scaleAddr, value => { EnqueueMainThreadAction(() => cubeTransform.localScale = (Vector3)value); });
+        AddCallback(colorAddr, value => { EnqueueMainThreadAction(() => cubeMaterial.color = (Color)value); });
     }
 }

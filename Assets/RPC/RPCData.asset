@@ -13,24 +13,28 @@ MonoBehaviour:
   m_Name: RPCData
   m_EditorClassIdentifier: 
   parameters:
-  - rid: 8005765737135472654
-  - rid: 8005765737135472655
-  - rid: 8005765737135472656
-  - rid: 8005765737135472657
-  - rid: 8005765737135472658
-  - rid: 8005765737135472659
-  - rid: 8005765737135472660
-  - rid: 8005765737135472661
-  - rid: 8005765737135472662
-  - rid: 8005765737135472663
-  - rid: 8005765737135472664
-  - rid: 8005765737135472665
-  - rid: 8005765737135472666
-  - rid: 8005765737135472667
+  - rid: 8005765737135472708
+  - rid: 8005765737135472709
+  - rid: 8005765737135472710
+  - rid: 8005765737135472711
+  - rid: 8005765737135472712
+  - rid: 8005765737135472713
+  - rid: 8005765737135472714
+  - rid: 8005765737135472715
+  - rid: 8005765737135472716
+  - rid: 8005765737135472717
+  - rid: 8005765737135472718
+  - rid: 8005765737135472719
+  - rid: 8005765737135472720
+  - rid: 8005765737135472721
+  - rid: 8005765737135472722
+  - rid: 8005765737135472723
+  - rid: 8005765737135472724
+  - rid: 8005765737135472725
   references:
     version: 2
     RefIds:
-    - rid: 8005765737135472654
+    - rid: 8005765737135472708
       type: {class: RPCParamInt, ns: RPC, asm: RemoteParamControl}
       data:
         name: intVal
@@ -39,7 +43,7 @@ MonoBehaviour:
         min: 0
         max: 0
         value: 0
-    - rid: 8005765737135472655
+    - rid: 8005765737135472709
       type: {class: RPCParamFloat, ns: RPC, asm: RemoteParamControl}
       data:
         name: floatVal
@@ -48,7 +52,7 @@ MonoBehaviour:
         min: 0
         max: 0
         value: 0
-    - rid: 8005765737135472656
+    - rid: 8005765737135472710
       type: {class: RPCParamFloat, ns: RPC, asm: RemoteParamControl}
       data:
         name: sliderVal
@@ -57,7 +61,7 @@ MonoBehaviour:
         min: 0
         max: 1
         value: 0
-    - rid: 8005765737135472657
+    - rid: 8005765737135472711
       type: {class: RPCParamInt, ns: RPC, asm: RemoteParamControl}
       data:
         name: intSliderVal
@@ -66,7 +70,7 @@ MonoBehaviour:
         min: 0
         max: 10
         value: 0
-    - rid: 8005765737135472658
+    - rid: 8005765737135472712
       type: {class: RPCParamVector2, ns: RPC, asm: RemoteParamControl}
       data:
         name: vector2Val
@@ -75,7 +79,7 @@ MonoBehaviour:
         min: 0
         max: 0
         value: {x: 1, y: 1}
-    - rid: 8005765737135472659
+    - rid: 8005765737135472713
       type: {class: RPCParamVector2Int, ns: RPC, asm: RemoteParamControl}
       data:
         name: vector2IntVal
@@ -84,7 +88,7 @@ MonoBehaviour:
         min: 0
         max: 0
         value: {x: 1, y: 1}
-    - rid: 8005765737135472660
+    - rid: 8005765737135472714
       type: {class: RPCParamVector3, ns: RPC, asm: RemoteParamControl}
       data:
         name: vector3Val
@@ -93,7 +97,7 @@ MonoBehaviour:
         min: 0
         max: 0
         value: {x: 1, y: 1, z: 1}
-    - rid: 8005765737135472661
+    - rid: 8005765737135472715
       type: {class: RPCParamVector3Int, ns: RPC, asm: RemoteParamControl}
       data:
         name: vector3IntVal
@@ -102,7 +106,7 @@ MonoBehaviour:
         min: 0
         max: 0
         value: {x: 1, y: 1, z: 1}
-    - rid: 8005765737135472662
+    - rid: 8005765737135472716
       type: {class: RPCParamVector4, ns: RPC, asm: RemoteParamControl}
       data:
         name: vector4Val
@@ -111,7 +115,7 @@ MonoBehaviour:
         min: 0
         max: 0
         value: {x: 1, y: 1, z: 1, w: 1}
-    - rid: 8005765737135472663
+    - rid: 8005765737135472717
       type: {class: RPCParamColor, ns: RPC, asm: RemoteParamControl}
       data:
         name: colorVal
@@ -120,7 +124,7 @@ MonoBehaviour:
         min: 0
         max: 0
         value: {r: 1, g: 1, b: 1, a: 1}
-    - rid: 8005765737135472664
+    - rid: 8005765737135472718
       type: {class: RPCParamRect, ns: RPC, asm: RemoteParamControl}
       data:
         name: rectVal
@@ -134,7 +138,7 @@ MonoBehaviour:
           y: 1
           width: 1
           height: 1
-    - rid: 8005765737135472665
+    - rid: 8005765737135472719
       type: {class: RPCParamRectInt, ns: RPC, asm: RemoteParamControl}
       data:
         name: rectIntVal
@@ -147,7 +151,7 @@ MonoBehaviour:
           y: 1
           width: 1
           height: 1
-    - rid: 8005765737135472666
+    - rid: 8005765737135472720
       type: {class: RPCParamBool, ns: RPC, asm: RemoteParamControl}
       data:
         name: boolVal
@@ -156,7 +160,7 @@ MonoBehaviour:
         min: 0
         max: 0
         value: 0
-    - rid: 8005765737135472667
+    - rid: 8005765737135472721
       type: {class: RPCParamString, ns: RPC, asm: RemoteParamControl}
       data:
         name: stringVal
@@ -165,3 +169,39 @@ MonoBehaviour:
         min: 0
         max: 0
         value: Hello, World!
+    - rid: 8005765737135472722
+      type: {class: RPCParamVector3, ns: RPC, asm: RemoteParamControl}
+      data:
+        name: pos
+        layoutType: 6
+        address: cube/pos
+        min: 0
+        max: 0
+        value: {x: 0.5, y: 1.5, z: -5}
+    - rid: 8005765737135472723
+      type: {class: RPCParamVector3, ns: RPC, asm: RemoteParamControl}
+      data:
+        name: rot
+        layoutType: 6
+        address: cube/rot
+        min: 0
+        max: 0
+        value: {x: 0, y: 0, z: 0}
+    - rid: 8005765737135472724
+      type: {class: RPCParamVector3, ns: RPC, asm: RemoteParamControl}
+      data:
+        name: scale
+        layoutType: 6
+        address: cube/scale
+        min: 0
+        max: 0
+        value: {x: 1, y: 1, z: 1}
+    - rid: 8005765737135472725
+      type: {class: RPCParamColor, ns: RPC, asm: RemoteParamControl}
+      data:
+        name: color
+        layoutType: 9
+        address: cube/color
+        min: 0
+        max: 0
+        value: {r: 1, g: 1, b: 1, a: 1}
