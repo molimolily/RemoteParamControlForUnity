@@ -36,7 +36,6 @@ public class RPCSample : MonoBehaviour
     public bool boolVal = false;
     public RPC.RPCLayoutType layoutType;
 
-    // Start is called before the first frame update
     void Start()
     {
         intText = canvas.transform.Find("Panel/Int/Value").GetComponent<TextMeshProUGUI>();
@@ -55,7 +54,6 @@ public class RPCSample : MonoBehaviour
         boolToggle = canvas.transform.Find("Panel/Bool/Value").GetComponent<Toggle>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         intText.text = intVal.ToString();
