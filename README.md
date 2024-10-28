@@ -21,7 +21,10 @@ Package ManagerのAdd package from git URLオプションから以下の順で�
    ```
    データ受信時のコールバックを追加します。    
    ```C#
-   AddCallback(intValAdr, value => rpcSample.intVal = (int)value);
+   protected override void SetCallbacks()
+   {
+      AddCallback(intValAdr, value => rpcSample.intVal = (int)value);
+   }
    ```
    Unity APIを使用する場合、メインスレッドで実行されるようメソッドを設定します。  
    ```C#
