@@ -1,6 +1,6 @@
 # RemoteParamControl
 ## Overview
-RemoteParamControlは、ビルド済みのスタンドアロンアプリケーションに対し、Unity Editorからパラメータ制御を行うことを可能にします。  
+RemoteParamControlは、ビルドしたスタンドアロンアプリケーションに対し、Editorからパラメータ制御を行えるようにします。
 
 ![RPC_test](https://github.com/user-attachments/assets/df0fab89-efcb-4d23-b220-b9b254749b3a)
 
